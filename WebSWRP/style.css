@@ -6,13 +6,6 @@
    "==== AÑADIR MISIONES ====" para editar el contenido.
    ============================================================ */
 
-@font-face {
-  font-family: "StarJedi";
-  src: url("./fonts/Starjedi.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
 :root{
   /* ---- paleta: consola de inteligencia clon, sala oscura ---- */
   /* --void:        #090c11;    */

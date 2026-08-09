@@ -157,7 +157,7 @@ const statusMeta = {
   neutral:  { color: "var(--red)",      label: "Neutralizado",     icon: "✕" },
   locked:   { color: "var(--locked)",   label: "Sin identificar",  icon: "🔒" }
 };
-const LOCKED_IMAGE = "media/GIF_BH.gif";
+const LOCKED_IMAGE = "media/Bh/GIF_BH.gif";
 
 // --- estrellas de ambiente (fondo general, landing) ---
 (function starfield(){
