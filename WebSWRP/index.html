@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expediente Táctico — Red de Cazarrecompensas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="starfield"></div>
+<div id="scanlines" aria-hidden="true"></div>
+
+<!-- ============ LANDING ============ -->
+<section id="landing" style="background-image: url('media/Landing3.png');">
+  <div class="landing-inner">
+    <p class="eyebrow">Expediente clasificado · Solo para ojos de la república</p>
+    <h1 class="landing-title"> Operación <span>Niebla Azul</span></h1>
+    <p class="landing-sub">
+      Registro de operativos de los SGT-<span id="clone-id">5778 «Spike»</span> y SGT-<span id="clone-id">8604 «Chef»</span> contra la red de
+      cazarrecompensas que opera en los territorios del borde medio y exterior.
+    </p>
+    <button class="cta" id="open-map">
+      Abrir red táctica <span class="arrow">→</span>
+    </button>
+  </div>
+</section>
+
+<!-- ============ APP ============ -->
+<div id="app">
+  <div class="topbar">
+    <div class="topbar-left">
+      <button class="icon-btn" id="toggle-sidebar" title="Mostrar/ocultar bitácora" aria-label="Mostrar u ocultar bitácora">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <span id="sidebar-badge-dot" class="sidebar-badge-dot" hidden></span>
+      </button>
+      <span class="op-name">Operación — Niebla Azul</span>
+    </div>
+    <button class="back-link" id="back-to-landing">
+      ‹ Cerrar expediente
+    </button>
+  </div>
+
+  <!-- ---- bitácora / desplegable de misiones ---- -->
+  <aside id="sidebar">
+    <div class="sidebar-heading">
+      <b>Bitácora de misiones</b>
+      <span id="mission-badge" class="mission-badge" hidden>0</span>
+      <span id="mission-count">00</span>
+      <button class="icon-btn" id="filter-toggle" title="Mostrar/ocultar filtros" aria-label="Mostrar u ocultar filtros" aria-expanded="false">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="4 4 20 4 14 12.5 14 19 10 21 10 12.5 4 4"/></svg>
+      </button>
+    </div>
+    <div id="mission-filters-wrap">
+      <div id="mission-filters">
+        <div id="filter-legion" class="legion-filter" role="group" aria-label="Filtrar por legión">
+          <button type="button" class="legion-btn" data-legion="501" title="501">
+            <img src="media/legions/501st.png" alt="501">
+          </button>
+          <button type="button" class="legion-btn" data-legion="SH" title="SH">
+            <img src="media/legions/sh.png" alt="SH">
+          </button>
+          <button type="button" class="legion-btn" data-legion="327" title="327">
+            <img src="media/legions/327st.png" alt="327">
+          </button>
+          <button type="button" class="legion-btn" data-legion="41" title="41">
+            <img src="media/legions/41st.png" alt="41">
+          </button>
+          <button type="button" class="legion-btn" data-legion="212" title="212">
+            <img src="media/legions/212st.png" alt="212">
+          </button>
+          <button type="button" class="legion-btn" data-legion="21" title="21">
+            <img src="media/legions/21st.jpg" alt="21">
+          </button>
+        </div>
+        <select id="filter-planeta" class="mission-filter-select">
+          <option value="">Planeta: todos</option>
+          <option value="Anaxes">Anaxes</option>
+          <option value="Hoth">Hoth</option>
+          <option value="Tatooine">Tatooine</option>
+          <option value="Kashyyyk">Kashyyyk</option>
+          <option value="Umbara">Umbara</option>
+        </select>
+        <select id="filter-objetivo" class="mission-filter-select">
+          <option value="">Objetivo: todos</option>
+        </select>
+        <button id="filter-clear" class="mission-filter-clear" title="Quitar filtros">Limpiar</button>
+      </div>
+    </div>
+    <div id="mission-empty" class="mission-empty" hidden>Ninguna misión coincide con los filtros.</div>
+    <div id="mission-list"></div>
+  </aside>
+
+  <!-- ---- mapa de nodos ---- -->
+  <div id="map-wrap">
+    <svg id="map-watermark" viewBox="0 0 600 600" aria-hidden="true">
+      <circle fill="none" stroke="currentColor" stroke-width="31.8518" cx="300" cy="300" r="284.0741"/>
+      <circle fill="currentColor" cx="300" cy="300" r="93.2122"/>
+      <g id="RepublicHalf">
+        <g id="RepublicElmt">
+          <path fill="currentColor" d="M164.331,122.014A223.797,223.797 0 0,1 270.077,78.2125
+            V48.1605A253.611,253.611 0 0,0 143.081,100.764Z"/>
+          <path fill="none" stroke="currentColor" stroke-width="38.881" d="M300,300v187.968"/>
+        </g>
+        <use href="#RepublicElmt" transform="rotate(45,300,300)"/>
+        <use href="#RepublicElmt" transform="rotate(90,300,300)"/>
+        <use href="#RepublicElmt" transform="rotate(135,300,300)"/>
+      </g>
+      <use href="#RepublicHalf" transform="rotate(180,300,300)"/>
+    </svg>
+    <div id="map-starfield"></div>
+    <div id="map-stage">
+      <div id="map-inner">
+        <svg id="connections" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+        <!-- los nodos se generan por JS -->
+      </div>
+    </div>
+    <div id="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>Objetivo activo</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--clone)"></span>Capturado</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>Neutralizado</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--leader)"></span>Cabecilla</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--locked)"></span>Sin identificar</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PANEL DE DETALLE ============ -->
+<div id="overlay"></div>
+<aside id="detail">
+  <div class="detail-photo-wrap">
+    <button class="detail-close" id="detail-close" aria-label="Cerrar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <img class="detail-photo" id="detail-photo" src="" alt="">
+  </div>
+  <div class="detail-body">
+    <div class="detail-status" id="detail-status">Objetivo activo</div>
+    <div class="detail-codename" id="detail-codename">Alias</div>
+    <h2 class="detail-name" id="detail-name">Nombre</h2>
+    <p class="detail-role" id="detail-role">Rol</p>
+    <div class="detail-divider"></div>
+    <p class="detail-bio" id="detail-bio">Bio</p>
+  </div>
+</aside>
+
+<script src="script.js"></script>
+</body>
+</html>
