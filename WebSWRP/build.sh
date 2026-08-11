@@ -11,7 +11,6 @@ cp -r fonts dist/ 2>/dev/null || true
 
 echo "Quitando comentarios del JavaScript..."
 terser script.js \
-  --compress false --mangle false \
   --format comments=false,beautify=true \
   -o dist/script.js
 
