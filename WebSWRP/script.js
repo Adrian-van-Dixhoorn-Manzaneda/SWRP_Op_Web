@@ -30,7 +30,9 @@
      role     -> su función en la banda
      image    -> URL o ruta a la foto (cuadrada funciona mejor)
      status   -> "target" | "captured" | "neutral" | "leader"
-     bio      -> texto que aparece al hacer clic en el nodo
+     bio      -> texto que aparece al hacer clic en el nodo.
+                  Para hacer un salto de línea, escribe \n donde
+                  quieras el corte (ej: "Primera línea.\n\nSegunda línea.")
 
    Si todavía no lo has identificado en el rol, escribe
    simplemente:   { locked: true }
@@ -77,7 +79,7 @@ const network = [
       { locked: true }
     ]
   },
-  /* ---- Rama 3: Jefe de Finanzas (abajo izq) ---- */
+  /* ---- Rama 3: Jefe de Inteligencia (abajo izq) ---- */
   {
     head: { locked: true},
     second: { locked: true },
@@ -107,7 +109,12 @@ const network = [
 
    title       -> título de la misión
    image       -> URL o ruta a la foto
-   description -> texto que se despliega al hacer clic
+   description -> texto que se despliega al hacer clic.
+                  Para hacer un salto de línea, escribe \n donde
+                  quieras el corte (ej: "Primera línea.\n\nSegunda línea.").
+                  Si el texto es muy largo, el propio recuadro
+                  mostrará scroll automáticamente, no hace falta
+                  hacer nada especial.
    legiones    -> array con las legiones que participaron.
                   Usa EXACTAMENTE estos valores: "501", "SH",
                   "327", "41", "212", "21"
@@ -143,6 +150,18 @@ const missionLog = [
 
 
   */
+  {
+   title: "El soplo del cadete",
+   image: "media/Entradas/Entrada1.webp",
+   description: "Recibimos varias alertas por parte de nuestro contacto en la Armada, Schmaichel, quien nos informó de que, durante los últimos días, los escáneres de Kashyyyk habían detectado la entrada y salida de varias naves no autorizadas.\n\n " +
+   "Ante esta situación, la 501st fue desplegada en el planeta con el objetivo de pedir amablemente a los individuos que abandonaran el territorio e investigar la procedencia y las actividades de este grupo no autorizado.\n\n " +
+   "Durante la operación, nuestros efectivos localizaron varias mercancías cuya distribución había sido declarada ilegal por el Parlamento de la República. Tras confirmar su naturaleza, la mercancía fue inmediatamente confiscada y destruida por la Legión.\n\n " + 
+   "Sin embargo, el grupo ofreció una considerable resistencia a las fuerzas de la República, obligándonos a intervenir para neutralizar la amenaza. Una vez asegurada la zona, nuestros efectivos localizaron una consola que contenía información relevante sobre las operaciones de los contrabandistas. Gracias a ella, se logró obtener información acerca de sus encargos y, posiblemente, de la identidad de su líder.\n\n ",
+   legiones: ["501"],
+   planeta: "Kashyyyk",
+   objetivos: [""]
+   },
+
 
 ];
 

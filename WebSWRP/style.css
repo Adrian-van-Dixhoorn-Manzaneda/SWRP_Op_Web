@@ -433,7 +433,10 @@ button{ cursor:pointer; }
   max-height:0; overflow:hidden;
   transition: max-height .45s var(--ease);
 }
-.mission.is-open .mission-body{ max-height: 420px; }
+.mission.is-open .mission-body{
+  max-height: 420px;
+  overflow-y: auto;
+}
 .mission-body-inner{ padding: 0 20px 20px 52px; }
 .mission-photo{
   width:100%; max-height:150px; object-fit:cover; border-radius:4px;
@@ -444,7 +447,15 @@ button{ cursor:pointer; }
 .mission.is-open .mission-photo{ opacity:1; transform: translateY(0); }
 .mission-desc{
   font-size: 14.5px; line-height:1.65; color: var(--text-mid);
+  white-space: pre-line;
 }
+
+/* scrollbar fino y discreto para el cuerpo de la misión, cuando el texto es largo */
+.mission-body::-webkit-scrollbar{ width: 6px; }
+.mission-body::-webkit-scrollbar-track{ background: transparent; }
+.mission-body::-webkit-scrollbar-thumb{ background: var(--hair); border-radius: 3px; }
+.mission-body::-webkit-scrollbar-thumb:hover{ background: var(--clone-dim); }
+.mission-body{ scrollbar-width: thin; scrollbar-color: var(--hair) transparent; }
 
 /* ---------- mapa táctico ---------- */
 #map-wrap{
@@ -654,7 +665,7 @@ svg#connections{
   font-size:13.5px; color: var(--text-mid); margin-bottom:18px;
 }
 .detail-divider{ height:1px; background: var(--hair); margin: 18px 0; }
-.detail-bio{ font-size:14.5px; line-height:1.75; color: var(--text-mid); }
+.detail-bio{ font-size:14.5px; line-height:1.75; color: var(--text-mid); white-space: pre-line; }
 
 @media (max-width: 860px){
   #sidebar{
