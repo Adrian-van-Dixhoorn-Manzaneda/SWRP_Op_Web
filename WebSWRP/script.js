@@ -73,7 +73,13 @@ const network = [
     head: { locked: true },
     second: { locked: true },
     outer: [
-      { locked: true },
+      { id: "1",
+        name: "Varek Dreel",
+        codename: "",
+        role: "Supervisor de mercancía",
+        image: "media/Bh/Bh_1.webp",
+        status: "target",
+        bio: "Expediente incompleto. Aún no hay suficiente inteligencia para confirmar la identidad de este objetivo." },
       { locked: true },
       { locked: true },
       { locked: true }
@@ -157,9 +163,18 @@ const missionLog = [
    "Ante esta situación, la 501st fue desplegada en el planeta con el objetivo de pedir amablemente a los individuos que abandonaran el territorio e investigar la procedencia y las actividades de este grupo no autorizado.\n\n " +
    "Durante la operación, nuestros efectivos localizaron varias mercancías cuya distribución había sido declarada ilegal por el Parlamento de la República. Tras confirmar su naturaleza, la mercancía fue inmediatamente confiscada y destruida por la Legión.\n\n " + 
    "Sin embargo, el grupo ofreció una considerable resistencia a las fuerzas de la República, obligándonos a intervenir para neutralizar la amenaza. Una vez asegurada la zona, nuestros efectivos localizaron una consola que contenía información relevante sobre las operaciones de los contrabandistas. Gracias a ella, se logró obtener información acerca de sus encargos y, posiblemente, de la identidad de su líder.\n\n ",
-   legiones: ["501"],
+   legiones: ["501", "Armada"],
    planeta: "Kashyyyk",
-   objetivos: [""]
+   objetivos: ["1"]
+   },
+   {
+    title: "Donde no llega el sol",
+    image: "media/Entradas/Entrada2.webp",
+    description: "Logramos descifrar la ubicación de otro almacén ilegal de este grupo de cazarrecompensas. La 501st fue desplegada para erradicar este almacén y recopilar la información posible sobre este grupo. \n\n " +
+    "Tras la incursión, la mercancía fue destruída y se logró identificar la posible identificación y posición del cabecilla de este grupo armado.",
+    legiones: ["501"],
+    planeta: "Tatooine",
+    objetivos: ["1"]
    },
 
 
