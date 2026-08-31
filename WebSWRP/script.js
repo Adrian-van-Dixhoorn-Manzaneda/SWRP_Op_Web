@@ -75,11 +75,11 @@ const network = [
     outer: [
       { id: "1",
         name: "Varek Dreel",
-        codename: "",
+        codename: "«Arrugas»",
         role: "Supervisor de mercancía",
         image: "media/Bh/Bh_1.webp",
-        status: "target",
-        bio: "Expediente incompleto. Aún no hay suficiente inteligencia para confirmar la identidad de este objetivo." },
+        status: "neutral",
+        bio: "Varek Dreel. Uno de los encargados de supervisar el transporte de mercancías del grupo CR. Apodo: «Arrugas». No era más que un pequeño eslabón del grupo." },
       { locked: true },
       { locked: true },
       { locked: true }
@@ -147,36 +147,51 @@ const missionLog = [
 
   {
    title: " ",
+   neutralizado: false,   // ponlo en true si en esta misión se ha eliminado a un objetivo. Muestra un aviso junto al título y una franja roja en la tarjeta.
    image: " ",
    description: " ",
    legiones: [" "],
    planeta: " ",
-   objetivos: [" "]
+   objetivos: [" "],
+   tropas: ""             // opcional. Texto libre con las tropas que asistieron, ej: "CT-5555 «Doc», CT-2187 «Rex»". Déjalo vacío ("") si no quieres mostrar el desplegable.
    },
 
 
   */
   {
    title: "El soplo del cadete",
+   neutralizado: false,
    image: "media/Entradas/Entrada1.webp",
    description: "Recibimos varias alertas por parte de nuestro contacto en la Armada, Schmaichel, quien nos informó de que, durante los últimos días, los escáneres de Kashyyyk habían detectado la entrada y salida de varias naves no autorizadas.\n\n " +
    "Ante esta situación, la 501st fue desplegada en el planeta con el objetivo de pedir amablemente a los individuos que abandonaran el territorio e investigar la procedencia y las actividades de este grupo no autorizado.\n\n " +
    "Durante la operación, nuestros efectivos localizaron varias mercancías cuya distribución había sido declarada ilegal por el Parlamento de la República. Tras confirmar su naturaleza, la mercancía fue inmediatamente confiscada y destruida por la Legión.\n\n " + 
    "Sin embargo, el grupo ofreció una considerable resistencia a las fuerzas de la República, obligándonos a intervenir para neutralizar la amenaza. Una vez asegurada la zona, nuestros efectivos localizaron una consola que contenía información relevante sobre las operaciones de los contrabandistas. Gracias a ella, se logró obtener información acerca de sus encargos y, posiblemente, de la identidad de su líder.\n\n ",
-   legiones: ["501", "Armada"],
+   legiones: ["501"],
    planeta: "Kashyyyk",
-   objetivos: ["1"]
+   objetivos: ["1"],
+   tropas: ""
    },
    {
     title: "Donde no llega el sol",
+    neutralizado: false,
     image: "media/Entradas/Entrada2.webp",
     description: "Logramos descifrar la ubicación de otro almacén ilegal de este grupo de cazarrecompensas. La 501st fue desplegada para erradicar este almacén y recopilar la información posible sobre este grupo. \n\n " +
     "Tras la incursión, la mercancía fue destruída y se logró identificar la posible identificación y posición del cabecilla de este grupo armado.",
     legiones: ["501"],
     planeta: "Tatooine",
-    objetivos: ["1"]
+    objetivos: ["1"],
+    tropas: ""
    },
-
+   {
+    title: "La caza de Varek Dreel",
+    neutralizado: true,
+    image: "media/Entradas/Entrada3.webp",
+    description: "Nuestra inteligencia nos proporcionó la localización del cazarrecompensas 'Varek Dreel'. Se encontraba en un pueblo de Tatooine. Tras el despliegue de la legión 501st, el pueblo fue registrado y encontraron a dicho cazarrecompensas. Este fue «CLASIFICADO» tras mencionar a algunos de sus contactos",
+    legiones: ["501"],
+    planeta: "Tatooine",
+    objetivos: ["1"],
+    tropas: "CBOM Pozuelo, CBOM Mesto, SDO2º Jesus, SDO2º Eusabio, SDO Cantero, SDO Red, SDO Chase"
+   },
 
 ];
 
@@ -314,13 +329,21 @@ function missionCard(m, i){
     <button class="mission-head" aria-expanded="false">
       <span class="mission-num">${String(i+1).padStart(2,'0')}</span>
       <img class="mission-thumb" src="${m.image}" alt="">
-      <span class="mission-title">${m.title}</span>
+      <div class="mission-title-wrap">
+        <span class="mission-title">${m.title}</span>
+        ${m.neutralizado ? `<span class="mission-tag mission-tag--neutral"><span class="mission-tag-dot"></span>Neutralizado</span>` : ''}
+      </div>
       <svg class="mission-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 6 15 12 9 18"/></svg>
     </button>
     <div class="mission-body">
       <div class="mission-body-inner">
         <img class="mission-photo" src="${m.image}" alt="">
         <p class="mission-desc">${m.description}</p>
+        ${m.tropas ? `
+        <details class="mission-troops">
+          <summary>Tropas asignadas</summary>
+          <p>${m.tropas}</p>
+        </details>` : ''}
       </div>
     </div>
   `;
